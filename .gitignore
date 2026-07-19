@@ -1,0 +1,39 @@
+# Python build / install artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+venv/
+.venv/
+
+# Cython / C simulation-core build output
+neucode/simcore.c
+*.so
+*.pyd
+*.o
+*.a
+*.d
+bin/
+compile_commands.json
+
+# Toolkit-generated firmware model headers (the *_default.h stubs are tracked)
+firmware/controller/ann/model_data.h
+firmware/controller/snn/model_data.h
+firmware/controller/snn/model_config.h
+
+# Toolkit run output (datasets, trained models, scalers, plots, metrics, logs)
+artifacts/
+experiments/
+*.zip
+*.log
+
+# Test / docs build output
+.pytest_cache/
+site/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store

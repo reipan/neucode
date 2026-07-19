@@ -1,0 +1,36 @@
+FROM python:3.8-slim
+
+# System deps for TF/grpcio build and Cython extension
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc g++ git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install grpcio from binary first to avoid 20-min compile
+RUN pip install --prefer-binary grpcio
+
+# TF + keras pinned to 2.10 era — cnn2snn 2.2.2 needs keras.utils.generic_utils.serialize_keras_object
+# which was reorganized in keras 2.12+
+RUN pip install "tensorflow==2.10.1" --prefer-binary
+RUN pip install "keras==2.10.0"
+
+# Akida stack — cnn2snn and tf_keras installed without deps to bypass TF version pins
+RUN pip install akida==2.2.2
+RUN pip install cnn2snn==2.2.2 --no-deps
+RUN pip install quantizeml
+
+# ML deps
+RUN pip install torch --prefer-binary
+RUN pip install snntorch
+
+# neucode requirements (from requirements-dev.txt)
+RUN pip install \
+    numpy scipy scikit-learn \
+    matplotlib pandas tabulate rich tqdm \
+    gymnasium stable-baselines3 \
+    pyserial
+
+# Cython for neucode simcore extension
+RUN pip install "cython>=3.0"
+
+WORKDIR /workspace
+ENV PYTHONPATH=/workspace

@@ -1,0 +1,112 @@
+site_name: NeuCoDe Documentation
+theme:
+  name: material
+
+not_in_nav: |
+  firmware/struct*.md
+  firmware/dir_*.md
+  firmware/*_8h.md
+  firmware/*_8h_source.md
+  firmware/*_8c.md
+  firmware/*_8c_source.md
+  firmware/namespaces.md
+  firmware/classes.md
+  firmware/hierarchy.md
+  firmware/modules.md
+  firmware/pages.md
+  firmware/class_member*.md
+  firmware/namespace_member*.md
+  firmware/functions.md
+  firmware/macros.md
+  firmware/variables.md
+  firmware/links.md
+  simcore/struct*.md
+  simcore/dir_*.md
+  simcore/*_8h.md
+  simcore/*_8h_source.md
+  simcore/*_8c.md
+  simcore/*_8c_source.md
+  simcore/namespaces.md
+  simcore/classes.md
+  simcore/hierarchy.md
+  simcore/modules.md
+  simcore/pages.md
+  simcore/class_member*.md
+  simcore/namespace_member*.md
+  simcore/functions.md
+  simcore/macros.md
+  simcore/variables.md
+  simcore/links.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: sphinx
+            show_source: true
+  - mkdoxy:
+      projects:
+        firmware:
+          src-dirs: firmware
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.h"
+            EXCLUDE_PATTERNS: "*/boards/* */build/*"
+            EXTRACT_ALL: "YES"
+            ENABLE_PREPROCESSING: "YES"
+            MACRO_EXPANSION: "YES"
+            OPTIMIZE_OUTPUT_FOR_C: "YES"
+        simcore:
+          src-dirs: neucode/c_src
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.h *.c"
+            EXTRACT_ALL: "YES"
+            ENABLE_PREPROCESSING: "NO"
+            MACRO_EXPANSION: "NO"
+            OPTIMIZE_OUTPUT_FOR_C: "YES"
+
+nav:
+  - Home: index.md
+  - Python API:
+    - Controllers: neucode/controllers.md
+    - Plants: neucode/plants.md
+    - Signals: neucode/signals.md
+    - Scenarios: neucode/scenarios.md
+    - Rewards: neucode/rewards.md
+    - Generators: neucode/generators.md
+    - Harness:
+      - neucode/harness/base.md
+      - neucode/harness/simulation.md
+      - neucode/harness/hardware.md
+    - Trainers:
+      - neucode/trainers/collector.md
+      - neucode/trainers/ann_replacement.md
+      - neucode/trainers/snn_replacement.md
+    - Tuners:
+      - neucode/tuners/base.md
+      - neucode/tuners/classic.md
+      - neucode/tuners/rl.md
+      - neucode/tuners/supervised.md
+    - Exporters:
+      - neucode/exporters/base.md
+      - neucode/exporters/ann.md
+      - neucode/exporters/snn.md
+    - Communication:
+      - neucode/communication/client.md
+      - neucode/communication/interface/base.md
+      - neucode/communication/interface/serial.md
+    - Experiment: neucode/experiment.md
+    - Results: neucode/results.md
+    - Recorder: neucode/recorder.md
+    - Profiles: neucode/profiles.md
+    - UI: neucode/ui.md
+  - SimCore Cython Wrapper: neucode/simcore.md
+  - SimCore C API:
+    - File List: simcore/files.md
+    - Data Structures: simcore/annotated.md
+  - Firmware C API:
+    - File List: firmware/files.md
+    - Data Structures: firmware/annotated.md

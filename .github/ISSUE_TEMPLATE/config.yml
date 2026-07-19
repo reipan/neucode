@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or usage help
+    url: https://github.com/reipan/neucode/discussions
+    about: For questions about using the toolkit, please open a Discussion instead of an issue.
+  - name: Security vulnerability
+    url: https://github.com/reipan/neucode/security/advisories/new
+    about: Report security issues privately (see SECURITY.md). Do not open a public issue.

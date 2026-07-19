@@ -1,0 +1,13 @@
+# NeuCoDe development dependencies.
+#
+# Dependency metadata now lives in pyproject.toml. The preferred install is:
+#
+#     pip install -e ".[dev]"
+#
+# This file is kept for convenience only -- it installs the same development
+# environment (core dependencies + the `rl` and `nir` extras + test/build
+# tooling) by referencing the pyproject extras below.
+#
+# The BrainChip Akida export path is proprietary and opt-in; install it
+# separately with:  pip install -e ".[akida]"   (see NOTICE).
+-e .[dev]

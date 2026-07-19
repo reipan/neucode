@@ -1,0 +1,14 @@
+include LICENSE
+include NOTICE
+include README.md
+include pyproject.toml
+
+# Cython / C simulation-core sources needed to build the extension from an sdist.
+include neucode/simcore.pyx
+recursive-include neucode/c_src *.c *.h
+include neucode/py.typed
+
+# Third-party vendored code (bundled) and its license.
+recursive-include vendor *.c *.h LICENSE
+
+global-exclude *.so *.pyd *.o *.a __pycache__/* *.pyc

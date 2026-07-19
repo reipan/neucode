@@ -1,0 +1,129 @@
+[build-system]
+requires = [
+    "setuptools>=64",
+    "wheel",
+    "numpy",
+    "cython>=3.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neucode"
+version = "0.1.0"
+description = "End-to-end toolkit for neuromorphic control design and deployment on resource-constrained devices"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Benedikt Fischer", email = "fischerbe98484@th-nuernberg.de" },
+]
+keywords = [
+    "neuromorphic",
+    "spiking-neural-networks",
+    "control-systems",
+    "pid",
+    "embedded",
+    "reinforcement-learning",
+    "imitation-learning",
+    "edge-ai",
+    "brainchip-akida",
+    "stm32",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: C",
+    "Programming Language :: Cython",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Embedded Systems",
+]
+
+# Core runtime dependencies. All are permissively licensed (BSD/MIT/Apache/PSF).
+# The neuromorphic-control pipeline (PID tuning, simulation, ANN/SNN training and
+# inference, firmware export) works with only these installed.
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.9",
+    "pandas>=1.5",
+    "matplotlib>=3.6",
+    "rich>=13.0",
+    "tqdm>=4.64",
+    "tabulate>=0.9",
+    "pyserial>=3.5",
+    "torch>=2.0",
+    "snntorch>=0.7",
+]
+
+[project.optional-dependencies]
+# Reinforcement-learning-based PID tuner (RLTuner). Optional: the classic and
+# supervised tuners work without it.
+rl = [
+    "gymnasium>=0.29",
+    "stable-baselines3>=2.0",
+]
+
+# Neuromorphic Intermediate Representation (NIR) export for import into
+# NIR-aware backends (Lava-DL, Sinabs, Rockpool, ...).
+nir = [
+    "nir>=1.0",
+]
+
+# BrainChip Akida (AKD1000) export path.
+#
+# WARNING: PROPRIETARY / THIRD-PARTY. These packages are published by BrainChip
+# under their own license terms (NOT Apache-2.0) and require BrainChip Akida
+# hardware and a BrainChip account to use meaningfully. They are strictly
+# optional -- NeuCoDe's open core does not import them unless you invoke the
+# Akida export path. Versions are pinned to the validated x86_64 development
+# release; for aarch64 production .fbz export (akida==2.2.2) use
+# Dockerfile.akida-export instead. See NOTICE and docs/akida_export_pipeline.md.
+akida = [
+    "akida==2.19.1",
+    "cnn2snn==2.19.1",
+    "quantizeml==2.19.1",
+]
+
+# Documentation site (MkDocs + mkdocstrings + mkdoxy). Doxygen must be installed
+# separately (system package) for the C/firmware API docs.
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.0",
+    "mkdocstrings[python]>=0.24",
+    "mkdoxy>=1.2",
+]
+
+# Development and testing tooling.
+dev = [
+    "pytest>=7.0",
+    "build>=1.0",
+    "cython>=3.0",
+    "compdb>=0.2",
+    "neucode[rl,nir]",
+]
+
+[project.urls]
+Homepage = "https://github.com/reipan/neucode"
+Repository = "https://github.com/reipan/neucode"
+Documentation = "https://github.com/reipan/neucode/tree/main/docs"
+Issues = "https://github.com/reipan/neucode/issues"
+
+[tool.setuptools.packages.find]
+include = ["neucode*"]
+
+[tool.setuptools.package-data]
+# Ship the Cython source, C sources, and headers so the extension can be built
+# from an sdist, plus the PEP 561 typing marker.
+neucode = ["py.typed", "*.pyx", "c_src/include/*.h", "c_src/src/*.c"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["rl: RL tuner tests (memory-heavy, run separately with -m rl)"]
+addopts = "-m 'not rl'"

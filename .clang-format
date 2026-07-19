@@ -1,0 +1,3 @@
+# Disable automatic clang-format for this repository.
+# Apply formatting manually per-file only when explicitly intended.
+DisableFormat: true

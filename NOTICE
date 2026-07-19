@@ -1,0 +1,39 @@
+NeuCoDe — Toolkit for Neuromorphic Control Design & Deployment
+Copyright 2026 Benedikt Fischer
+
+This product includes software developed as part of a Master's thesis at
+Technische Hochschule Nuernberg Georg Simon Ohm (TH Nuernberg).
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this software except in compliance with the License. A copy of the License
+is provided in the LICENSE file and is available at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+------------------------------------------------------------------------------
+Third-party components
+------------------------------------------------------------------------------
+
+This product bundles the following third-party software. Their licenses apply
+to the respective files and are reproduced alongside them.
+
+  Unity - A Test Framework for C
+    Location:  vendor/unity/
+    Copyright: (c) 2007-2025 Mike Karlesky, Mark VanderVoord, & Greg Williams
+    License:   MIT (see vendor/unity/LICENSE)
+    Homepage:  https://www.throwtheswitch.org/unity
+
+------------------------------------------------------------------------------
+Optional proprietary dependencies
+------------------------------------------------------------------------------
+
+The BrainChip Akida export path (the optional "akida" install extra:
+akida, cnn2snn, quantizeml) depends on proprietary third-party software
+published by BrainChip Holdings Ltd under its own separate license terms,
+NOT the Apache License 2.0. These packages are not bundled or redistributed
+with NeuCoDe; they are installed by the user on demand and require BrainChip
+Akida hardware and a BrainChip account to use. NeuCoDe's open core neither
+imports nor requires them unless the Akida export path is explicitly invoked.
+Your use of those packages is governed solely by BrainChip's license, not by
+this project's. See https://brainchip.com/ and the akida/cnn2snn package
+documentation for terms.

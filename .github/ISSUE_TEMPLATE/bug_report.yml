@@ -1,0 +1,44 @@
+name: Bug report
+description: Report a problem with the NeuCoDe toolkit or firmware
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. Please fill in as much
+        detail as you can — a minimal reproduction is the single most helpful thing.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug and what you expected instead.
+      placeholder: "Running step 4 raises ... but I expected ..."
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: A minimal command or code snippet that triggers the problem.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        - OS and version
+        - Python version (`python --version`)
+        - NeuCoDe version / commit
+        - Which optional extras are installed? (torch is core; `rl`, `nir`, `akida`, `docs`)
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs / traceback
+      render: shell
+    validations:
+      required: false

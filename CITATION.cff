@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "NeuCoDe: Toolkit for Neuromorphic Control Design & Deployment on Resource-Constrained Devices"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - given-names: Benedikt
+    family-names: Fischer
+    email: fischerbe98484@th-nuernberg.de
+    affiliation: "Technische Hochschule Nuernberg Georg Simon Ohm"
+repository-code: "https://github.com/reipan/neucode"
+license: Apache-2.0
+version: 0.1.0
+keywords:
+  - neuromorphic computing
+  - spiking neural networks
+  - control systems
+  - PID
+  - embedded systems
+  - edge AI

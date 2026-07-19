@@ -1,0 +1,3 @@
+# Collector
+
+::: neucode.trainers.collector

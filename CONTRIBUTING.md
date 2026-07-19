@@ -62,13 +62,35 @@ make run-tests
   signs, or em-dashes. Use `deg`, `->`, etc.
 - Keep changes focused; unrelated refactors belong in separate PRs.
 
+## Commit messages
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+type(optional-scope): short imperative summary
+```
+
+Common types: `feat`, `fix`, `docs`, `refactor`, `perf`, `test`, `build`,
+`ci`, `chore`, `style`. The scope in parentheses is an optional module hint.
+Examples:
+
+```
+feat(exporters): add ONNX export backend
+fix(harness): correct settling-time metric
+docs(readme): add citation section
+ci: cache pip and apt dependencies
+```
+
+Keep the summary in the imperative mood and roughly under 72 characters; add a
+body after a blank line when more context helps.
+
 ## Pull request checklist
 
 - [ ] Tests pass (`pytest` and, if you touched the C core, `make run-tests`).
 - [ ] New/changed public APIs have docstrings.
 - [ ] `import neucode` still works **without** optional extras installed
       (heavy/proprietary deps must stay lazily imported).
-- [ ] The commit history is reasonably clean and messages are descriptive.
+- [ ] Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
 
 ## Reporting security issues
 

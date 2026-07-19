@@ -16,13 +16,7 @@ LIB_NAME		:= neucode
 LIB_TARGET_A	:= $(BIN_DIR)/lib$(LIB_NAME).a
 LIB_TARGET_SO	:= $(BIN_DIR)/lib$(LIB_NAME).so
 
-LIB_SRCS := \
-	neucode/c_src/src/pid.c \
-	neucode/c_src/src/sp.c \
-	neucode/c_src/src/sim.c \
-	neucode/c_src/src/plant_fopdt.c \
-	neucode/c_src/src/disturbance.c \
-	neucode/c_src/src/metrics.c
+LIB_SRCS := $(wildcard neucode/c_src/src/*.c)
 
 # Static library objects and dependencies (No changes needed here)
 LIB_OBJS 	:= $(patsubst %.c,$(BUILD_DIR)/%.o,$(LIB_SRCS))
